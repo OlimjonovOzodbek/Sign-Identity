@@ -30,12 +30,10 @@ namespace Sign_Identity.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
-            //check model
             if (!ModelState.IsValid)
             {
                 throw new Exception("Validation error");
             }
-            // cehck dto
             if (string.IsNullOrWhiteSpace(registerDTO.Email))
             {
                 throw new Exception("Validation error");
@@ -60,7 +58,6 @@ namespace Sign_Identity.API.Controllers
                 return BadRequest("You already registered");
             }
 
-            //Mapping
             var user = new User()
             {
                 Email = registerDTO.Email,
@@ -70,7 +67,6 @@ namespace Sign_Identity.API.Controllers
                 Age = registerDTO.Age
             };
 
-            //create user
             var result = await _userManager.CreateAsync(user, registerDTO.Password);
             foreach(var role in registerDTO.Roles)
             {
@@ -78,10 +74,10 @@ namespace Sign_Identity.API.Controllers
             }
             if (!result.Succeeded)
             {
-                return BadRequest("Something went wrong in Create");
+                return BadRequest("Something went wrong");
             }
 
-            return Ok("Qilichdek Qilichbek");
+            return Ok("Bluetooth device is ready to pend");
         }
 
         [HttpPost]
