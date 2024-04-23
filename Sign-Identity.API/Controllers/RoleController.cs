@@ -19,7 +19,7 @@ namespace Sign_Identity.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<ResponseDTO>> CreateRole(RoleDTO role)
         {
 
